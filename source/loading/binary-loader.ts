@@ -55,7 +55,7 @@ export class BinaryLoader
 	private workers: Worker[] = [];
 
 	constructor({
-		getUrl = (s) => {return Promise.resolve(s);},
+		getUrl = (s) => {return Promise.resolve([s]);},
 		version,
 		boundingBox,
 		scale,
@@ -94,7 +94,7 @@ export class BinaryLoader
 		}
 
 		return Promise.resolve(this.getUrl(this.getNodeUrl(node)))
-			.then((url) => {return this.xhrRequest(url, {mode: 'cors'});})
+			.then((url) => {return this.xhrRequest(url[0], {mode: 'cors'});})
 			.then((res) => {return res.arrayBuffer();})
 			.then((buffer) => 
 			{

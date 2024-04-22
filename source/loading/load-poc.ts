@@ -50,9 +50,9 @@ export function loadPOC(
 {
 	return Promise.resolve(getUrl(url)).then((transformedUrl) => 
 	{ // 1. Make a request to the URL
-		return xhrRequest(transformedUrl, {mode: 'cors'})
+		return xhrRequest(transformedUrl[0], {mode: 'cors'})
 			.then((res) => {return res.json();})
-			.then(parse(transformedUrl, getUrl, xhrRequest)); // 2. Parse the response
+			.then(parse(transformedUrl[0], getUrl, xhrRequest)); // 2. Parse the response
 	});
 }
 
